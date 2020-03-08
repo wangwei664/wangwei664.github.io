@@ -6,15 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>xiaowang&#39;blog</title>
+  <title>Git 学习笔记二 | xiaowang&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="xiaowang&#39;blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Git 的特点和发展历史特点：分布式版本控制器分布式与集中式的对比   集中式 以 svn 为例：">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 学习笔记二">
+<meta property="og:url" content="http://yoursite.com/2017/07/14/Git-学习笔记二/index.html">
 <meta property="og:site_name" content="xiaowang&#39;blog">
+<meta property="og:description" content="Git 的特点和发展历史特点：分布式版本控制器分布式与集中式的对比   集中式 以 svn 为例：">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zhijiechi.com/xiaowang/git/1centralized.png">
+<meta property="og:image" content="http://zhijiechi.com/xiaowang/git/2destributed.png">
+<meta property="og:image" content="http://zhijiechi.com/xiaowang/git/3area.png">
+<meta property="og:image" content="http://zhijiechi.com/xiaowang/git/4ssh_keys_config.png">
+<meta property="og:updated_time" content="2020-03-08T13:50:38.108Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xiaowang&#39;blog">
+<meta name="twitter:title" content="Git 学习笔记二">
+<meta name="twitter:description" content="Git 的特点和发展历史特点：分布式版本控制器分布式与集中式的对比   集中式 以 svn 为例：">
+<meta name="twitter:image" content="http://zhijiechi.com/xiaowang/git/1centralized.png">
   
     <link rel="alternative" href="/atom.xml" title="xiaowang&#39;blog" type="application/atom+xml">
   
@@ -152,16 +162,14 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Git-学习笔记二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Git-学习笔记二" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/14/Git-学习笔记二/">Git 学习笔记二</a>
+    <h1 class="article-title" itemprop="name">
+      Git 学习笔记二
     </h1>
   
 
@@ -174,13 +182,327 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
+
+        <!-- 页面点击数 start -->
+         hits:
+           <span id="/2017/07/14/Git-学习笔记二/" class="leancloud_visitors" data-flag-title="Git 学习笔记二"></span> times
+        
+        <!-- 页面点击数 end -->
+
+        <!-- TOC start -->
+        
+            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+            <span class="btn-bg"></span>
+            <span class="btn-text">文章导航</span>
+            </p>
+            <div id="toc-article" class="toc-article">
+                <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+                <strong class="toc-title">文章目录</strong>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git-的特点和发展历史"><span class="toc-number">1.</span> <span class="toc-text">Git 的特点和发展历史</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#特点：分布式版本控制器"><span class="toc-number">1.1.</span> <span class="toc-text">特点：分布式版本控制器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发展历史"><span class="toc-number">1.2.</span> <span class="toc-text">发展历史</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码管理"><span class="toc-number">2.</span> <span class="toc-text">代码管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#工作区、暂存区和版本库"><span class="toc-number">2.1.</span> <span class="toc-text">工作区、暂存区和版本库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件操作"><span class="toc-number">2.2.</span> <span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加文件"><span class="toc-number">2.2.1.</span> <span class="toc-text">添加文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除文件"><span class="toc-number">2.2.2.</span> <span class="toc-text">删除文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移动或改名"><span class="toc-number">2.2.3.</span> <span class="toc-text">移动或改名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改动日志"><span class="toc-number">2.3.</span> <span class="toc-text">改动日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#版本切换"><span class="toc-number">2.4.</span> <span class="toc-text">版本切换</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分支管理"><span class="toc-number">3.</span> <span class="toc-text">分支管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分支的用途"><span class="toc-number">3.1.</span> <span class="toc-text">分支的用途</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看分支"><span class="toc-number">3.2.</span> <span class="toc-text">查看分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建分支"><span class="toc-number">3.3.</span> <span class="toc-text">创建分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切换分支"><span class="toc-number">3.4.</span> <span class="toc-text">切换分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#合并分支"><span class="toc-number">3.5.</span> <span class="toc-text">合并分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除分支"><span class="toc-number">3.6.</span> <span class="toc-text">删除分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速创建并切换分支"><span class="toc-number">3.7.</span> <span class="toc-text">快速创建并切换分支</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#远程仓库"><span class="toc-number">4.</span> <span class="toc-text">远程仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#查看远程仓库"><span class="toc-number">4.1.</span> <span class="toc-text">查看远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加远程仓库"><span class="toc-number">4.2.</span> <span class="toc-text">添加远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改远程仓库"><span class="toc-number">4.3.</span> <span class="toc-text">修改远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除远程仓库"><span class="toc-number">4.4.</span> <span class="toc-text">删除远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推送分支到远程库"><span class="toc-number">4.5.</span> <span class="toc-text">推送分支到远程库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置SSH方式的远程库"><span class="toc-number">4.5.1.</span> <span class="toc-text">配置SSH方式的远程库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置SSH格式的远程仓库地址"><span class="toc-number">4.5.1.1.</span> <span class="toc-text">配置SSH格式的远程仓库地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建ssh-key"><span class="toc-number">4.5.1.2.</span> <span class="toc-text">创建ssh key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#把公钥复制粘贴到到github账户的设置中"><span class="toc-number">4.5.1.3.</span> <span class="toc-text">把公钥复制粘贴到到github账户的设置中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#再push本地仓库的代码到远程仓库时，就会发现不需要每次都输入用户名密码了"><span class="toc-number">4.5.1.4.</span> <span class="toc-text">再push本地仓库的代码到远程仓库时，就会发现不需要每次都输入用户名密码了.</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#克隆远程仓库"><span class="toc-number">5.</span> <span class="toc-text">克隆远程仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">5.1.</span> <span class="toc-text">说明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+            </div>
+            <script type="text/javascript">
+            function showToc(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:block");
+                show_toc_btn.setAttribute("style","display:none");
+            };
+            function showBtn(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:none");
+                show_toc_btn.setAttribute("style","display:block");
+            };
+            </script>
+        
+        <!-- TOC end -->
+
         <h1 id="Git-的特点和发展历史"><a href="#Git-的特点和发展历史" class="headerlink" title="Git 的特点和发展历史"></a>Git 的特点和发展历史</h1><h2 id="特点：分布式版本控制器"><a href="#特点：分布式版本控制器" class="headerlink" title="特点：分布式版本控制器"></a>特点：分布式版本控制器</h2><p>分布式与集中式的对比  </p>
 <p>集中式 以 svn 为例：<br><img src="http://zhijiechi.com/xiaowang/git/1centralized.png" alt="图片无法正常显示" title="centralized">  </p>
-        
-          <a class="article-more-a" href="/2017/07/14/Git-学习笔记二/#more">more >></a>
-        
+<a id="more"></a>
+<p>中心的svn服务器，统一存储着代码版本的变迁及日志.<br>查看改动日志，回退代码版本，创建新的分支 都必须联网且连接到svn服务器.<br>假如中心的svn服务器宕机，就意味着所有文件全部丢失.</p>
+<p>分布式 以 git 为例：<br><img src="http://zhijiechi.com/xiaowang/git/2destributed.png" alt="图片无法正常显示" title="destributed">  </p>
+<p>中心的git服务器，也是起到一个存储和交换最新版本的作用.<br>每个开发者电脑上都有完整的代码版本、日志和分支信息.开发者不必依赖于服务器就可以查看日志、回退版本、创建分支.<br>假如中心的git服务器宕机，开发者可以从任意一台保存有原有代码版本的电脑上重新获取并恢复.  </p>
+<h2 id="发展历史"><a href="#发展历史" class="headerlink" title="发展历史"></a>发展历史</h2><p>……</p>
+<h1 id="代码管理"><a href="#代码管理" class="headerlink" title="代码管理"></a>代码管理</h1><h2 id="工作区、暂存区和版本库"><a href="#工作区、暂存区和版本库" class="headerlink" title="工作区、暂存区和版本库"></a>工作区、暂存区和版本库</h2><p>要想清晰地学习和理解git，必须了解3个区域：  </p>
+<ul>
+<li>工作区：开发者的工作目录.  </li>
+<li>暂存区：操作已被记录，但尚未提交到版本库的暂存区域.  </li>
+<li>版本库：存储变化日志和版本信息的区域.  </li>
+</ul>
+<p><img src="http://zhijiechi.com/xiaowang/git/3area.png" alt="图片无法正常显示" title="工作区 暂存区 版本库">  </p>
+<p>使用 <code>$ git status</code> 查看下创建文件并将其提交到版本库的全过程  </p>
+<blockquote>
+<p><code>$ git status</code> ? 咦 怎么感觉这么熟悉呢？对，没错，还记得在前面快速体验git操作时的特别提醒么：“记得多用 <code>$ git status</code> ,会有意想不到的收获呦”  </p>
+</blockquote>
+<pre><code>$ touch text.txt #在本地工作区 创建test.txt文件  
+$ git status #查看状态，如下  
+
+On branch master
+Untracked files:
+  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+
+        test.txt
+
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+</code></pre><blockquote>
+<p>在 master 分支下有一个未被追踪的文件 test.txt<br>可使用 git add fileName 把它添加到待提交列表 [即暂存区]  </p>
+</blockquote>
+<pre><code>$ git add test.txt #将test.txt文件添加到暂存区  
+$ git status #查看状态，如下  
+
+On branch master
+Changes to be committed:
+  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+
+        new file:   test.txt
+</code></pre><blockquote>
+<p>存在可提交的修改  </p>
+<ul>
+<li>此时可以使用 <code>git reset HEAD text.txt</code> 将test.txt文件从暂存区删除  </li>
+</ul>
+</blockquote>
+<pre><code># git commit -m &quot;提交备注&quot; #提交到版本库  
+$ git commit -m &quot;created test.txt&quot; #将test.txt文件提交到版本库，会看到如下信息  
+
+[master ece6dd6] created test.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test.txt
+
+$ git status #查看状态，如下  
+
+On branch master
+nothing to commit, working tree clean
+</code></pre><blockquote>
+<p>没有可被提交的东西了，目前工作区是干净的.  </p>
+</blockquote>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h3 id="添加文件"><a href="#添加文件" class="headerlink" title="添加文件"></a>添加文件</h3><pre><code>$ git add fileName #添加fileName文件到暂存区
+$ git add fileName1 fileName2 fileName3 #添加fileName1、fileName2到暂存区  
+$ git add *.txt #添加当前目录下的所有.txt文档到暂存区  
+$ git add . #添加当前目录的所有文件到暂存区
+</code></pre><h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><pre><code>$ git rm fileName  
+</code></pre><h3 id="移动或改名"><a href="#移动或改名" class="headerlink" title="移动或改名"></a>移动或改名</h3><pre><code>$ git mv 源文件 新文件  
+
+eg：  
+移动：git mv ./dir1/config.php ./dir2/config.php  
+改名：git mv config.php conf.php
+</code></pre><h2 id="改动日志"><a href="#改动日志" class="headerlink" title="改动日志"></a>改动日志</h2><p>每个文件/目录发生的版本变法都可以使用 <code>git log</code> 命令进行追溯.</p>
+<pre><code>$ git log #查看项目的日志  
+$ git log fileName #查看某文件日志
+</code></pre><p>eg:</p>
+<pre><code>commit 4a0fe54cf1f2ca3fda63201fa641e25ef4ea3a19
+Author: xiaowang &lt;wangwei19930418@163.com&gt;
+Date:   Thu Jun 29 18:20:52 2017 +0800
+
+    modified demo.txt
+
+commit b1cf6ddde9d1e31cedff8eaa84100e52ed8f8343
+Author: xiaowang &lt;wangwei19930418@163.com&gt;
+Date:   Thu Jun 29 17:45:24 2017 +0800
+
+    created demo.txt
+</code></pre><p>若感觉有些缭乱，可让日志单行显示  </p>
+<pre><code>$ git log --pretty=oneline
+
+4a0fe54cf1f2ca3fda63201fa641e25ef4ea3a19 modified demo.txt
+b1cf6ddde9d1e31cedff8eaa84100e52ed8f8343 created demo.txt
+</code></pre><h2 id="版本切换"><a href="#版本切换" class="headerlink" title="版本切换"></a>版本切换</h2><pre><code>$ git reflog #查看版本变化  
+
+[版本号]                  [提交备注]
+ece6dd6 HEAD@{0}: commit: created test.txt
+5651b92 HEAD@{1}: commit: added content &apos;push test&apos;
+</code></pre><p>方法1：使用 HEAD指针 来切换.  </p>
+<pre><code>HEAD指向的当前版本为 ece6dd6  
+$ git reset --hard HEAD^ #切换到当前版本的前1版本  
+$ git reset --hard HEAD^^ #切换到当前版本的前2版本  
+$ git reset --hard HEAD^^^ #切换到当前版本的前3版本  
+$ git reset --hard HEAD~100 #切换到当前版本的前100版本
+</code></pre><p>方法2：使用 版本号 来切换.  </p>
+<pre><code>$ git reset --hard 5651b92
+HEAD is now at 5651b92 added content &apos;push test&apos;  
+
+$ git reset --hard ece6dd6
+HEAD is now at ece6dd6 created test.txt
+</code></pre><p>注意：版本号不需要写的过长，只要能保证唯一性即可.<br>eg：<code>$ git reset --hard ece6</code>  </p>
+<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><h2 id="分支的用途"><a href="#分支的用途" class="headerlink" title="分支的用途"></a>分支的用途</h2><p>类比生活场景：<br>假设我在完成一篇毕业论文的过程中，已经写好了论文初稿，指导老师看后给出了修改意见说论文选题和整体架构还是不错的，但如果能在样本选择、资料收集方法、行文结构上做下调整会更好，我就要按照意见修改。<br>这时假如我直接在初稿的源文件上修改，有可能导致一种结果：论文修改的并没有达到预想效果，但初稿也已经面目全非，此时我便会陷入进退两难的境地。<br>若是我在修改前将初稿源文件复制一份，将源文件保存，在副本上进行修改，如果改的满意我可以使用副本改名后直接提交给指导老师审阅，若是感觉改的还不如初稿好想要返回，那我就直接放弃该文件，找到初稿源文件再重新复制一份进行修改即可。</p>
+<p>模拟开发场景：<br>假设目前手里有个小项目，要开发一个产品管理系统，开发周期设为7天吧。<br>这时假如我直接在源码文件上进行的开发。  </p>
+<h2 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h2><pre><code>$ git branch #查看所有分支  
+</code></pre><p>eg:</p>
+<pre><code>$ git branch
+* master
+#说明当前只有master分支，且处于master分支
+</code></pre><h2 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h2><pre><code>$ git branch branchName #创建某个分支
+</code></pre><p>eg:</p>
+<pre><code>$ git branch dev #创建dev分支  
+$ git branch
+  dev
+* master
+# 说明当前有 master 和 dev 两个分支，且处于master分支
+</code></pre><h2 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h2><pre><code>$ git checkout branchName #切换到某个分支上  
+</code></pre><p>eg:</p>
+<pre><code>$ git checkout dev #切换到dev分支
+Switched to branch &apos;dev&apos;
+
+$ git branch
+* dev
+  master
+# 说明当前已经处于dev分支
+</code></pre><h2 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h2><pre><code>$ git merge branchName #合并分支  
+</code></pre><p>假设当前我们在dev分支上开发某功能，并测试测试后，可以把dev分支上的内容合并到master分支上.<br>eg：当前 test.txt 文件内容为空，在dev分支上，添加内容“contents from dev.”,并提交；然后切换到master分支上，查看下test.txt文件的内容仍为空；然后执行<code>git merge dev</code>合并下dev分支，在查看test.txt文件，内容就不再为空而是“contents from dev.”啦.</p>
+<pre><code>$ git checkout dev #切换到dev分支上
+
+#在test.txt文件中添加内容“contents from dev.”
+$ git add test.txt
+$ git commit -m &quot;merge dev branch test&quot;
+#将添加操作提交到仓库
+
+$ git checkout master #切换到master分支上
+Switched to branch &apos;master&apos;
+#此时查看下 test.txt 文件，发现内容仍然为空。
+
+$ git merge dev #合并dev分支
+Updating ece6dd6..fa96b9e
+Fast-forward
+ test.txt | 1 +
+ 1 file changed, 1 insertion(+)  
+
+#此时，再查看下 test.txt 文件，就会发现dev分支上添加的内容“contents from dev.”了.
+</code></pre><h2 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h2><pre><code>git branch -d branchName #删除某分支  
+
+$ git branch -d dev #删除dev分支
+Deleted branch dev (was fa96b9e).
+
+$ git branch
+* master 
+# 只剩下master分支
+</code></pre><h2 id="快速创建并切换分支"><a href="#快速创建并切换分支" class="headerlink" title="快速创建并切换分支"></a>快速创建并切换分支</h2><pre><code>$ git checkout -b branchName #创建并切换到某分支  
+</code></pre><p>即是 <code>$ git branch branchName</code> 和 <code>$ git branch branchName</code> 的合并.</p>
+<h1 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h1><h2 id="查看远程仓库"><a href="#查看远程仓库" class="headerlink" title="查看远程仓库"></a>查看远程仓库</h2><pre><code>$ git remote #查看远程仓库  
+$ git remote -v #查看远程仓库地址  
+</code></pre><p>eg:</p>
+<pre><code>$ git remote
+origin
+
+$ git remote -v
+origin  https://github.com/itxiaowang/gitlearn.git (fetch)
+origin  https://github.com/itxiaowang/gitlearn.git (push)
+</code></pre><h2 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h2><pre><code>$ git remote add &lt;远程库名&gt; &lt;远程库地址&gt;  
+</code></pre><p>eg：  </p>
+<pre><code>$ git remote add origin https://github.com/itxiaowang/gitlearn.git
+</code></pre><h2 id="修改远程仓库"><a href="#修改远程仓库" class="headerlink" title="修改远程仓库"></a>修改远程仓库</h2><pre><code>$ git remote rename &lt;旧名称&gt; &lt;新名称&gt;  
+</code></pre><p>eg:  </p>
+<pre><code>$ git remote rename origin originhttps
+
+$ git remote -v
+originhttps     https://github.com/itxiaowang/gitlearn.git (fetch)
+originhttps     https://github.com/itxiaowang/gitlearn.git (push)
+</code></pre><h2 id="删除远程仓库"><a href="#删除远程仓库" class="headerlink" title="删除远程仓库"></a>删除远程仓库</h2><pre><code>$ git remote remove &lt;远程库名&gt;  
+</code></pre><h2 id="推送分支到远程库"><a href="#推送分支到远程库" class="headerlink" title="推送分支到远程库"></a>推送分支到远程库</h2><p>推送分支，就是把该分支上的所有本地内容提交推送到远程库。<br>推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上：  </p>
+<pre><code>$ git push origin master  
+</code></pre><p>如果要推送其他分支，比如dev，就改成：  </p>
+<pre><code>$ git push origin dev
+</code></pre><h3 id="配置SSH方式的远程库"><a href="#配置SSH方式的远程库" class="headerlink" title="配置SSH方式的远程库"></a>配置SSH方式的远程库</h3><p>上面快速体验采用的https方式连接远程库，每次都要输入用户名和密码，有些麻烦，这里配置公钥、采用SSH方式连接远程库可以解决此问题。  </p>
+<h4 id="配置SSH格式的远程仓库地址"><a href="#配置SSH格式的远程仓库地址" class="headerlink" title="配置SSH格式的远程仓库地址"></a>配置SSH格式的远程仓库地址</h4><pre><code>$ git remote add &lt;远程仓库名&gt; &lt;远程仓库ssh地址&gt;  
+</code></pre><p>eg:  </p>
+<pre><code>$ git remote add origin git@github.com:itxiaowang/gitlearn.git
+
+$ git remote
+origin
+originhttps
+
+$ git remote -v
+origin  git@github.com:itxiaowang/gitlearn.git (fetch)
+origin  git@github.com:itxiaowang/gitlearn.git (push)
+originhttps     https://github.com/itxiaowang/gitlearn.git (fetch)
+originhttps     https://github.com/itxiaowang/gitlearn.git (push)
+</code></pre><h4 id="创建ssh-key"><a href="#创建ssh-key" class="headerlink" title="创建ssh key"></a>创建ssh key</h4><pre><code>$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;
+</code></pre><p>把 email地址 换成你自己的邮件地址，然后连按四下回车键即可[不用输入密码].  </p>
+<pre><code>$ ssh-keygen -t rsa -C &quot;wangwei19930418@163.com&quot;
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/Administrator/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/Administrator/.ssh/id_rsa.
+Your public key has been saved in /c/Users/Administrator/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:GhMe34w95T+sE6ozpZvfdqXHV3S3kReo4xcXtLWe/II wangwei19930418@163.com
+The key&apos;s randomart image is:
++---[RSA 2048]----+
+|              o..|
+|             . o+|
+|      o     o  o+|
+|     . + = = .o+*|
+|      + S * o o=*|
+|       +  .o.= .+|
+|      .  o .E.=+o|
+|        +...o.oo+|
+|        +*..oo ..|
++----[SHA256]-----+
+</code></pre><p>完成后，可以在 ~/.ssh 目录下 [ 即 用户主目录下，如 C:\Users\Administrator ] 找到 id_rsa [私钥] 和 id_rsa.pub [公钥] 两个文件。<br>公钥和私钥是成对的，能让分别持有的双方互相认识。</p>
+<h4 id="把公钥复制粘贴到到github账户的设置中"><a href="#把公钥复制粘贴到到github账户的设置中" class="headerlink" title="把公钥复制粘贴到到github账户的设置中"></a>把公钥复制粘贴到到github账户的设置中</h4><p><img src="http://zhijiechi.com/xiaowang/git/4ssh_keys_config.png" alt="图片无法正常显示" title="添加公钥到github账户的设置中"></p>
+<h4 id="再push本地仓库的代码到远程仓库时，就会发现不需要每次都输入用户名密码了"><a href="#再push本地仓库的代码到远程仓库时，就会发现不需要每次都输入用户名密码了" class="headerlink" title="再push本地仓库的代码到远程仓库时，就会发现不需要每次都输入用户名密码了."></a>再push本地仓库的代码到远程仓库时，就会发现不需要每次都输入用户名密码了.</h4><pre><code>$ git push origin master  
+</code></pre><p>执行推送命令后回车，会出现以下消息</p>
+<pre><code>The authenticity of host &apos;github.com (192.30.253.113)&apos; can&apos;t be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)? yes
+</code></pre><p>输入<code>yes</code>,回车即可</p>
+<pre><code>Warning: Permanently added &apos;github.com,192.30.253.113&apos; (RSA) to the list of known hosts.
+Counting objects: 6, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (6/6), 529 bytes | 0 bytes/s, done.
+Total 6 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), done.
+To github.com:itxiaowang/gitlearn.git
+   5651b92..fa96b9e  master -&gt; master
+</code></pre><p>说明 分支推送已完成。</p>
+<h1 id="克隆远程仓库"><a href="#克隆远程仓库" class="headerlink" title="克隆远程仓库"></a>克隆远程仓库</h1><pre><code>git clone &lt;远程仓库地址&gt; &lt;本地存放目录&gt;  
+</code></pre><p>eg：将远程gitlearn仓库中的内容 克隆到 本地 D:/gitlearn2 目录</p>
+<pre><code>$ cd D:/ #切换到D盘目录下
+$ git clone git@github.com:itxiaowang/gitlearn.git ./gitlearn2 #克隆远程仓库到本地
+
+Cloning into &apos;./gitlearn2&apos;...
+remote: Counting objects: 29, done.
+remote: Compressing objects: 100% (15/15), done.
+remote: Total 29 (delta 3), reused 22 (delta 2), pack-reused 0
+Receiving objects: 100% (29/29), done.
+Resolving deltas: 100% (3/3), done.
+</code></pre><p>此时，查看D盘下，多了个gitlearn2目录，里面文件及内容和远程仓库gitlearn中的一样。  </p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>前面快速体验时，我先创建了本地库，后创建了远程库。下面简述下如何关联远程库：  </li>
+</ul>
+<p>现在，假设我们从零开发，最好的方式是先创建远程库，然后从远程库进行克隆。  </p>
+<p>首先，登陆GitHub，创建一个新的仓库，名字叫gitskills：</p>
+<p>我们勾选Initialize this repository with a README，这样GitHub会自动为我们创建一个README.md文件。创建完毕后，可以看到README.md文件：  </p>
+<p>现在，远程库已经准备好了，下一步是用命令git clone克隆一个本地库：  </p>
+<p>注意把Git远程库地址换成你自己的，然后进入gitskills目录看看，已经有README.md文件了。  </p>
+<p>如果有多个人协作开发，那么每个人各自从远程库中克隆一份到自己本地就可以了。  </p>
+<p>注：GitHub远程库一般给出两个地址：ssh地址 和 https地址。Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。使用https除了速度慢以外，还有个最大的问题是每次推送都必须输入口令用户名和密码。  </p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://git-scm.com/docs" title="Git官方手册" target="_blank" rel="noopener">Git Manual</a><br><a href="https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf" title="Git小抄" target="_blank" rel="noopener">Git Cheat Sheet</a><br><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013760174128707b935b0be6fc4fc6ace66c4f15618f8d000" title="廖雪峰网站Git教程" target="_blank" rel="noopener">Git教程</a></p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢您对我的欣赏<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -211,16 +533,75 @@ var _hmt = _hmt || [];
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/14/Git-学习笔记二/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/14/Git-学习笔记二/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/07/14/Git-学习笔记一/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Git 学习笔记一</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -231,145 +612,12 @@ var _hmt = _hmt || [];
 
 
 
-
   
-    <article id="post-Git-学习笔记一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/14/Git-学习笔记一/">Git 学习笔记一</a>
-    </h1>
   
 
-        
-        <a href="/2017/07/14/Git-学习笔记一/" class="archive-article-date">
-  	<time datetime="2017-07-14T02:10:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Git是什么？"><a href="#Git是什么？" class="headerlink" title="Git是什么？"></a>Git是什么？</h1><p>Git 是一款免费、开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。  </p>
-<p><img src="http://zhijiechi.com/xiaowang/git/0git_bash_logo.png" alt="图片无法正常显示"></p>
-        
-          <a class="article-more-a" href="/2017/07/14/Git-学习笔记一/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/开发工具/" class="article-tag-list-link color5">开发工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/14/Git-学习笔记一/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/13/hello-world/">Hello World</a>
-    </h1>
   
 
-        
-        <a href="/2017/07/13/hello-world/" class="archive-article-date">
-  	<time datetime="2017-07-13T02:24:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-        
-          <a class="article-more-a" href="/2017/07/13/hello-world/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/13/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -391,8 +639,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
